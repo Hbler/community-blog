@@ -3,6 +3,7 @@ import Layout from "./controllers/Layout.js";
 
 //// Flow
 if (String(self.location.href).includes("index")) {
+  console.log("hi");
   Layout.loginPage();
 
   const form = document.querySelector("form");
