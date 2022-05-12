@@ -73,7 +73,7 @@ class User {
     const postList = document.querySelector(".main__all-posts");
     const page = localStorage.getItem("page");
 
-    const request = API.editPost(body, id);
+    const request = await API.editPost(body, id);
     Layout.postsPage(postList, page);
   }
 
