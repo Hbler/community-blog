@@ -36,7 +36,7 @@ class Layout {
     form.addEventListener("submit", User.login);
 
     register.innerHTML =
-      'não tem uma conta?<br><a href="./src/pages/register.html">cadastre-se aqui</a>';
+      'não tem uma conta?<br><a href="./register.html">cadastre-se aqui</a>';
 
     [(email, password)].forEach((x) => (x.required = true));
 
