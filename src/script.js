@@ -12,7 +12,7 @@ if (document.title === "Blog | Hugo Bler") {
 
   const form = document.querySelector("form");
   form.classList.add("slideFromBottom");
-} else if (Sdocument.title === "Blog - Sign Up | Hugo Bler") {
+} else if (document.title === "Blog - Sign Up | Hugo Bler") {
   Layout.registerPage();
 
   const form = document.querySelector("form");
