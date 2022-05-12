@@ -11,7 +11,7 @@ class User {
 
     let test = await API.newUser(body);
     console.log(test);
-    self.location = "./login.html";
+    self.location = "../../index.html";
   }
 
   static async login(e) {
@@ -29,14 +29,14 @@ class User {
         localStorage.setItem("username", user.username);
         localStorage.setItem("avatar", user.avatarUrl);
 
-        self.location = "./main.html";
+        self.location = "./src/pages/main.html";
       }
     }
   }
 
   static logout() {
     localStorage.clear();
-    self.location = "./login.html";
+    self.location = "../../index.html";
   }
 
   static newPost(e) {
