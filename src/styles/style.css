@@ -1,0 +1,276 @@
+/* IMPORTS */
+/* Files */
+@import "./reset.css";
+@import "./form.css";
+
+body {
+  background-color: #f3f3f3;
+}
+
+/* HEADER */
+header {
+  height: 20vh;
+  padding: 5%;
+  display: flex;
+  color: #fff;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #6495ed;
+}
+
+.header__img {
+  max-height: 95%;
+  padding: 1%;
+  border-radius: 50%;
+  border: 4px #f3f3f3;
+  border-style: solid solid dotted;
+}
+
+header .btn {
+  font-size: 1.2rem;
+}
+
+/* MAIN */
+
+main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main__new-post,
+.post {
+  margin: 5% 0;
+  width: 95vw;
+  height: 30%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  background-color: #f3f3f3;
+}
+
+.main__new-post--input {
+  width: 95%;
+  height: 90%;
+  padding: 5%;
+  overflow: scroll;
+  border: none;
+  border-radius: 3px;
+  background-color: #6495ed10;
+  box-shadow: -1px -1px 3px -1px #48484850 inset;
+}
+
+.main__new-post .btn {
+  width: 10%;
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+}
+
+.main__all-posts {
+  width: 100%;
+  height: 70%;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+}
+
+/* POST */
+.post {
+  width: 95%;
+  height: fit-content;
+  margin: 2%;
+  padding: 3%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border: 1px solid transparent;
+  background-color: #6495ed10;
+  box-shadow: -1px -1px 3px -1px #48484850;
+}
+
+.post__img {
+  max-width: 20%;
+  border-radius: 50%;
+}
+
+.post__username {
+  width: 75%;
+}
+
+.post__content {
+  width: 75%;
+  margin-left: 25%;
+  font-size: 0.8rem;
+  text-align: justify;
+}
+
+.post__date {
+  width: 100%;
+  margin-top: 2%;
+  color: #888888;
+  font-weight: 300;
+  text-align: right;
+}
+
+.post__btns {
+  top: 50%;
+  left: 7%;
+  width: 10%;
+  height: 30%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.post__btns button {
+  height: 45%;
+}
+
+.post__btns button:nth-child(1) {
+  background-color: #6495ed;
+}
+
+.post__btns button:nth-child(2) {
+  background-color: #ed6464;
+}
+
+/* GENERAL */
+.btn,
+.post__btns button {
+  padding: 2%;
+  color: #fff;
+  font-weight: 300;
+  font-size: 1rem;
+  border: none;
+  border-radius: 3px;
+  background-color: #edbc64;
+  transition: 200ms;
+  cursor: pointer;
+}
+
+.btn:hover {
+  border-radius: 10px;
+  font-weight: 400;
+}
+
+@media (min-width: 700px) {
+  /* HEADER */
+  header {
+    height: 20vh;
+    padding: 2%;
+    justify-content: space-between;
+  }
+
+  .header__img {
+    padding: 0.5%;
+  }
+
+  header h1 {
+    width: 80%;
+  }
+
+  header .btn {
+    font-size: 1.4rem;
+    padding: 1%;
+  }
+
+  /* MAIN */
+  .main__new-post {
+    width: 86%;
+  }
+
+  .main__new-post--input {
+    font-size: 1.1rem;
+    box-shadow: -1px -1px 5px -1px #48484850 inset;
+  }
+
+  .main__new-post .btn {
+    width: 5%;
+    padding: 1%;
+    bottom: 15%;
+  }
+
+  /* POST */
+  .post {
+    width: 85%;
+  }
+
+  .post__img {
+    max-width: 13%;
+  }
+
+  .post__username {
+    width: 85%;
+  }
+
+  .post__content {
+    margin-left: 15%;
+  }
+
+  .post__date {
+    width: 90%;
+  }
+
+  .post__btns {
+    left: 6%;
+  }
+}
+
+@media (min-width: 1000px) {
+  /* HEADER */
+
+  header .btn {
+    font-size: 1rem;
+  }
+
+  header .btn i {
+    display: none;
+  }
+
+  header .btn::before {
+    content: "Logout";
+  }
+
+  /* MAIN */
+  .main__new-post {
+    width: 61%;
+    max-width: 630px;
+    margin: 1% 0;
+  }
+
+  /* POST */
+  .post {
+    width: 60%;
+    max-width: 600px;
+    margin: 1%;
+  }
+
+  .post__content {
+    width: 85%;
+  }
+
+  .post__date {
+    width: 100%;
+  }
+
+  .post__btns {
+    top: 54%;
+    left: 8%;
+    width: 6%;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: 500ms;
+  }
+
+  .post:hover .post__btns {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
