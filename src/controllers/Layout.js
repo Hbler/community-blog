@@ -140,6 +140,7 @@ class Layout {
 
     const pagination = Layout.createPagination();
 
+    main.classList.add("blog__main");
     main.append(newPost, pagination, allPosts);
     body.append(header, main);
   }

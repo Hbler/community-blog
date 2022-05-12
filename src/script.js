@@ -16,4 +16,10 @@ if (document.title === "Blog | Hugo Bler") {
   form.classList.add("slideFromBottom");
 } else if (document.title === "Blog - Main | Hugo Bler") {
   Layout.mainPage();
+  const pagination = document.querySelector(".main__pagination");
+  setTimeout(() => {
+    if (document.readyState === "complete" && pagination.innerHTML === "") {
+      location.reload();
+    }
+  }, 500);
 }

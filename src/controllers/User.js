@@ -31,7 +31,9 @@ class User {
         localStorage.setItem("username", user.username);
         localStorage.setItem("avatar", user.avatarUrl);
 
-        self.location = "./main.html";
+        const checkUsr = await API.anUser(user.id);
+
+        if (checkUsr.email === body.email) self.location = "./main.html";
       }
     }
   }
@@ -59,6 +61,8 @@ class User {
     const current = post.querySelector(".post__content");
     const input = post.querySelector(".post__edit");
     const btn = post.querySelector(".btn__edit");
+
+    input.value = current.innerText;
 
     current.classList.toggle("clear");
     input.classList.toggle("clear");

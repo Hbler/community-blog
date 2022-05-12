@@ -9,13 +9,17 @@ body {
 
 /* HEADER */
 header {
+  width: 100vw;
   height: 20vh;
+  margin-bottom: 2vh;
   padding: 5%;
   display: flex;
   color: #fff;
   align-items: center;
   justify-content: space-between;
   background-color: #6495ed;
+  position: fixed;
+  z-index: 2;
 }
 
 .header__img {
@@ -34,10 +38,16 @@ header .btn {
 
 main {
   height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: absolute;
+}
+
+.blog__main {
+  top: 20%;
 }
 
 .main__new-post,
@@ -77,19 +87,21 @@ main {
   padding: 5%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .main__pagination small {
   width: 10%;
-  margin: 2% 0;
-  color: #6495ed;
+  margin: 2%;
+  padding: 1% 0;
+  color: #fff;
   text-align: center;
   cursor: pointer;
+  background-color: #edbc64;
+  border-radius: 3px;
 }
 
 .main__pagination small:hover {
-  color: #edbc64;
+  border-radius: 10px;
   text-decoration: underline;
 }
 
@@ -250,6 +262,7 @@ main {
 
   .main__pagination small {
     width: 5%;
+    margin: 1%;
   }
 
   /* POST */
