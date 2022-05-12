@@ -1,7 +1,7 @@
 //// Imports
 import API from "../models/API.js";
 import Form from "./Form.js";
-import Layout from "./layout.js";
+import Layout from "./Layout.js";
 
 //// Model
 class User {

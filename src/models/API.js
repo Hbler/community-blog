@@ -1,5 +1,3 @@
-//// Imports
-
 //// Model
 class API {
   static baseURL = "https://api-blog-m2.herokuapp.com/";
