@@ -1,13 +1,10 @@
 //// Imports
 import Layout from "./controllers/Layout.js";
 
-console.log(document.title);
-
 //// Flow
 if (document.title === "Blog | Hugo Bler") {
   window.location = "./src/pages/login.html";
 } else if (document.title === "Blog - Login | Hugo Bler") {
-  console.log("hi");
   Layout.loginPage();
 
   const form = document.querySelector("form");
