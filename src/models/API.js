@@ -78,6 +78,8 @@ class API {
       .then((res) => res.json())
       .then((res) => res)
       .catch((error) => error);
+
+    return req;
   }
 
   static async aPost(id) {
@@ -128,6 +130,8 @@ class API {
       .then((res) => res.json())
       .then((res) => res)
       .catch((error) => error);
+
+    return req;
   }
 
   static deletPost(id) {
@@ -141,6 +145,8 @@ class API {
       .then((res) => res.json())
       .then((res) => res)
       .catch((error) => error);
+
+    return req;
   }
 }
 

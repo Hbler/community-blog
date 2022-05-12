@@ -126,10 +126,11 @@ class Layout {
 
     postInput.classList.add("main__new-post--input");
     postInput.placeholder = "Crie um post !";
-    postInput.name = "content";
+    postInput.id = "content";
 
     postBtn.innerHTML = '<i class="fa-solid fa-square-plus"></i>';
     postBtn.classList.add("btn");
+    postBtn.addEventListener("click", User.newPost);
 
     newPost.append(postInput, postBtn);
 
@@ -137,7 +138,9 @@ class Layout {
     Layout.postsPage(allPosts, 1);
     allPosts.classList.add("main__all-posts");
 
-    main.append(newPost, allPosts);
+    const pagination = Layout.createPagination();
+
+    main.append(newPost, pagination, allPosts);
     body.append(header, main);
   }
 
@@ -146,6 +149,8 @@ class Layout {
     const img = document.createElement("img");
     const name = document.createElement("h2");
     const txt = document.createElement("p");
+    const edit = document.createElement("input");
+    const editBtn = document.createElement("button");
     const postDate = document.createElement("small");
 
     img.src = src;
@@ -157,10 +162,19 @@ class Layout {
     txt.innerText = str;
     txt.classList.add("post__content");
 
+    edit.type = "text";
+    edit.classList.add("post__edit", "clear");
+    edit.placeholder = "Digite o novo post";
+
+    editBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
+    editBtn.classList.add("btn", "btn__edit", "clear");
+    editBtn.dataset.id = id;
+    editBtn.addEventListener("click", User.updatePost);
+
     postDate.innerText = date;
     postDate.classList.add("post__date");
 
-    container.append(img, name, txt, postDate);
+    container.append(img, name, txt, edit, editBtn, postDate);
 
     if (bool) {
       const btns = document.createElement("div");
@@ -169,11 +183,11 @@ class Layout {
 
       editBtn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
       editBtn.dataset.id = id;
-      //   editBtn.addEventListener("click", API.editPost);
+      editBtn.addEventListener("click", User.startEdit);
 
       deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
       deleteBtn.dataset.id = id;
-      //   deleteBtn.addEventListener("click", API.deletePost);
+      deleteBtn.addEventListener("click", User.deletePost);
 
       btns.append(editBtn, deleteBtn);
       btns.classList.add("post__btns");
@@ -182,14 +196,25 @@ class Layout {
     }
 
     container.classList.add("post");
+    container.id = id;
 
     return container;
   }
 
   static async postsPage(parent, page) {
     parent.innerHTML = "";
-    const first = await API.postsAtPage(page);
-    const posts = first.data;
+    const aPage = await API.postsAtPage(page);
+    const posts = aPage.data;
+
+    localStorage.setItem("page", aPage.page);
+    localStorage.setItem("lastPage", aPage.lastPage);
+
+    if (aPage.page !== aPage.lastPage) {
+      localStorage.setItem("nextPage", aPage.page + 1);
+    }
+    if (aPage.page !== 1) {
+      localStorage.setItem("previousPage", aPage.page - 1);
+    }
 
     posts.forEach((p) => {
       const { id, post, createdAt, owner } = p;
@@ -206,6 +231,31 @@ class Layout {
       );
       parent.appendChild(aPost);
     });
+  }
+
+  static changePage(e) {
+    const postList = document.querySelector(".main__all-posts");
+    const page = e.target.dataset.number;
+
+    Layout.postsPage(postList, +page);
+  }
+
+  static createPagination() {
+    const container = document.createElement("div");
+    const lastPage = localStorage.getItem("lastPage");
+
+    for (let p = 1; p <= +lastPage; p++) {
+      const num = document.createElement("small");
+      num.dataset.number = p;
+      num.innerText = p;
+      num.addEventListener("click", Layout.changePage);
+
+      container.appendChild(num);
+    }
+
+    container.classList.add("main__pagination");
+
+    return container;
   }
 }
 

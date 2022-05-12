@@ -16,5 +16,4 @@ if (document.title === "Blog | Hugo Bler") {
   form.classList.add("slideFromBottom");
 } else if (document.title === "Blog - Main | Hugo Bler") {
   Layout.mainPage();
-  //   Layout.postsPage();
 }

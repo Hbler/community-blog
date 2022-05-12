@@ -1,6 +1,7 @@
 //// Imports
 import API from "../models/API.js";
 import Form from "./Form.js";
+import Layout from "./layout.js";
 
 //// Model
 class User {
@@ -23,6 +24,7 @@ class User {
 
     if (auth.token) {
       localStorage.setItem("token", auth.token);
+      localStorage.setItem("userId", auth.userId);
       const user = await API.anUser(auth.userId);
 
       if (user.id) {
@@ -39,8 +41,49 @@ class User {
     self.location = "./login.html";
   }
 
-  static newPost(e) {
-    const body = Form.handleSubmit(e.target);
+  static async newPost() {
+    const postList = document.querySelector(".main__all-posts");
+    const input = document.getElementById("content");
+    const body = { content: input.value };
+    const page = localStorage.getItem("page");
+
+    input.value = "";
+
+    const request = await API.newPost(body);
+    Layout.postsPage(postList, page);
+  }
+
+  static startEdit(e) {
+    const id = e.target.dataset.id || e.target.closest("button").dataset.id;
+    const post = document.getElementById(id);
+    const current = post.querySelector(".post__content");
+    const input = post.querySelector(".post__edit");
+    const btn = post.querySelector(".btn__edit");
+
+    current.classList.toggle("clear");
+    input.classList.toggle("clear");
+    btn.classList.toggle("clear");
+  }
+
+  static async updatePost(e) {
+    const id = e.target.dataset.id || e.target.closest("button").dataset.id;
+    const post = document.getElementById(id);
+    const input = post.querySelector(".post__edit");
+    const body = { newContent: input.value };
+    const postList = document.querySelector(".main__all-posts");
+    const page = localStorage.getItem("page");
+
+    const request = API.editPost(body, id);
+    Layout.postsPage(postList, page);
+  }
+
+  static async deletePost(e) {
+    const postID = e.target.dataset.id || e.target.closest("button").dataset.id;
+    const postList = document.querySelector(".main__all-posts");
+    const page = localStorage.getItem("page");
+
+    const request = await API.deletPost(postID);
+    Layout.postsPage(postList, +page);
   }
 }
 
