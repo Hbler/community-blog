@@ -26,6 +26,7 @@ function url_redirect(url) {
 
 //// Flow
 if (String(self.location.href).includes("index")) {
+  console.log(self.location.href);
   url_redirect("./src/pages/login.html");
 } else if (String(self.location.href).includes("login")) {
   Layout.loginPage();
