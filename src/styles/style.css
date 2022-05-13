@@ -212,6 +212,10 @@ main {
   font-weight: 400;
 }
 
+.main__pagination .active {
+  background-color: #6495ed;
+}
+
 .clear {
   display: none;
 }
