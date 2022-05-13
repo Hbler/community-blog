@@ -48,6 +48,23 @@ class LayoutController {
 
     header.append(img, name, logoutBtn);
 
+    const newPost = LayoutController.createNewPost();
+
+    const allPosts = document.createElement("section");
+    PostController.postsPage(allPosts, 1);
+
+    allPosts.classList.add("main__all-posts");
+
+    const pagination = PostController.createPagination();
+
+    main.classList.add("blog__main");
+    main.append(newPost, pagination, allPosts);
+    body.append(header, main);
+
+    LayoutController.currentPage();
+  }
+
+  static createNewPost() {
     const newPost = document.createElement("section");
     const postInput = document.createElement("input");
     const postBtn = document.createElement("button");
@@ -63,19 +80,7 @@ class LayoutController {
     postBtn.addEventListener("click", PostController.newPost);
 
     newPost.append(postInput, postBtn);
-
-    const allPosts = document.createElement("section");
-    PostController.postsPage(allPosts, 1);
-
-    allPosts.classList.add("main__all-posts");
-
-    const pagination = PostController.createPagination();
-
-    main.classList.add("blog__main");
-    main.append(newPost, pagination, allPosts);
-    body.append(header, main);
-
-    LayoutController.currentPage();
+    return newPost;
   }
 
   static changePage(e) {

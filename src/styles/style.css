@@ -86,8 +86,8 @@ main {
   margin: 2% 0;
   padding: 5%;
   display: flex;
-  /* justify-content: space-evenly; */
   overflow: scroll;
+  box-shadow: -1px -1px 3px -1px #48484850 inset;
 }
 
 .main__pagination small {
@@ -266,6 +266,7 @@ main {
     width: 85%;
     margin: 0;
     padding: 2%;
+    box-shadow: -1px -1px 5px -1px #48484850 inset;
   }
 
   .main__pagination small {
@@ -332,6 +333,7 @@ main {
   .main__pagination {
     width: 60%;
     max-width: 630px;
+    margin: 1%;
   }
 
   /* POST */
