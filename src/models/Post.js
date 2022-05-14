@@ -20,7 +20,7 @@ class Post {
     const { edit, editBtn } = this.postEditor();
     const btns = this.postBtns();
 
-    img.src = this.src;
+    img.style.backgroundImage = `url(${this.src})`;
     img.classList.add("post__img");
 
     name.innerText = this.usr;

@@ -1,6 +1,7 @@
 //// Imports
 import API from "../util/API.js";
 import FormController from "./FormController.js";
+import LayoutController from "./LayoutController.js";
 
 //// Model
 class UserController {
@@ -8,10 +9,30 @@ class UserController {
     e.preventDefault();
 
     const body = FormController.handleSubmit(e.target);
+    const page = "./login.html";
+    let message;
 
-    let test = await API.newUser(body);
-    console.log(test);
-    self.location = "./login.html";
+    let user = await API.newUser(body);
+
+    if (user.id) {
+      message = `Foi criada a conta de ${user.username}!\nClique Ok para ir para pagina de Login.`;
+      LayoutController.newModal(message, page);
+
+      const pageModal = document.querySelector(".modal__container--notice");
+      pageModal.classList.add("slideFromBottom");
+    } else if (user.message.includes("duplicate")) {
+      message = "Esse email já está cadastrado.\nTente novamente.";
+      LayoutController.newModal(message);
+
+      const pageModal = document.querySelector(".modal__container--notice");
+      pageModal.classList.add("slideFromBottom");
+    } else {
+      message = "Houve algum erro na hora de criar a conta.\nTente novamente.";
+      LayoutController.newModal(message);
+
+      const pageModal = document.querySelector(".modal__container--notice");
+      pageModal.classList.add("slideFromBottom");
+    }
   }
 
   static async login(e) {
@@ -20,6 +41,7 @@ class UserController {
     const body = FormController.handleSubmit(e.target);
 
     const auth = await API.userLogin(body);
+    console.log(auth);
 
     if (auth.token) {
       localStorage.setItem("token", auth.token);
@@ -34,6 +56,12 @@ class UserController {
 
         if (checkUsr.email === body.email) self.location = "./main.html";
       }
+    } else if (auth.message.includes("failed")) {
+      let message = "Email ou senha incorretos.\nTente novamente.";
+      LayoutController.newModal(message);
+
+      const pageModal = document.querySelector(".modal__container--notice");
+      pageModal.classList.add("slideFromBottom");
     }
   }
 

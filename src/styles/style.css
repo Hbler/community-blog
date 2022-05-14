@@ -2,6 +2,7 @@
 /* Files */
 @import "./reset.css";
 @import "./form.css";
+@import "./modal.css";
 
 body {
   background-color: #f3f3f3;
@@ -23,11 +24,15 @@ header {
 }
 
 .header__img {
-  max-height: 95%;
+  width: 60px;
+  height: 60px;
+  max-width: 30%;
   padding: 1%;
   border-radius: 50%;
   border: 4px #f3f3f3;
-  border-style: solid solid dotted;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 header .btn {
@@ -83,7 +88,7 @@ main {
 
 .main__pagination {
   width: 100vw;
-  margin: 2% 0;
+  margin: 5% 0;
   padding: 5%;
   display: flex;
   overflow: scroll;
@@ -136,6 +141,9 @@ main {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .post__username {
@@ -224,6 +232,35 @@ main {
   display: none;
 }
 
+.slideFromBottom {
+  transition: 300ms;
+  animation: slide-up;
+  animation-fill-mode: forwards;
+  animation-duration: 800ms;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (min-width: 700px) {
   /* HEADER */
   header {
@@ -233,7 +270,8 @@ main {
   }
 
   .header__img {
-    padding: 0.5%;
+    width: 80px;
+    height: 80px;
   }
 
   header h1 {

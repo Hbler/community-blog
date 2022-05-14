@@ -20,15 +20,11 @@ class FormController {
 
   static loginForm() {
     const form = document.createElement("form");
-    const closeBtn = document.createElement("button");
     const title = document.createElement("h1");
     const email = document.createElement("input");
     const password = document.createElement("input");
     const loginBtn = document.createElement("input");
     const register = document.createElement("p");
-
-    closeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-    closeBtn.classList.add("close-btn");
 
     title.innerText = "Login";
 
@@ -51,7 +47,7 @@ class FormController {
 
     [(email, password)].forEach((x) => (x.required = true));
 
-    form.append(closeBtn, title, email, password, loginBtn, register);
+    form.append(title, email, password, loginBtn, register);
     return form;
   }
 
@@ -65,7 +61,8 @@ class FormController {
     const password = document.createElement("input");
     const regBtn = document.createElement("input");
 
-    closeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+    closeBtn.innerHTML =
+      '<i class="fa-solid fa-xmark"></i><span class="tooltip">Cancelar</span>';
     closeBtn.classList.add("close-btn");
     closeBtn.addEventListener("click", () => {
       history.back();
@@ -76,26 +73,28 @@ class FormController {
     userName.placeholder = "Nome de Usuário";
     userName.name = "username";
     userName.type = "text";
+    userName.required = true;
 
     email.placeholder = "Email";
     email.name = "email";
     email.type = "email";
+    email.required = true;
 
     photo.placeholder = "Foto do Perfil";
     photo.name = "avatarUrl";
-    photo.type = "text";
+    photo.type = "url";
+    photo.required = true;
 
     password.placeholder = "Senha";
     password.name = "password";
     password.type = "password";
+    password.required = true;
 
     regBtn.value = "Cadastrar";
     regBtn.type = "submit";
     regBtn.id = "register";
     regBtn.classList.add("btn");
     form.addEventListener("submit", UserController.sendNew);
-
-    [(userName, email, photo, password)].forEach((x) => (x.required = true));
 
     form.append(closeBtn, title, userName, email, photo, password, regBtn);
 

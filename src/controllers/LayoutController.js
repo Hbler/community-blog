@@ -35,7 +35,7 @@ class LayoutController {
     const logoutBtn = document.createElement("button");
 
     img.classList.add("header__img");
-    img.src = localStorage.getItem("avatar");
+    img.style.backgroundImage = `url(${localStorage.getItem("avatar")})`;
 
     name.classList.add("header__username");
     name.innerText = localStorage.getItem("username");
@@ -62,6 +62,43 @@ class LayoutController {
     body.append(header, main);
 
     LayoutController.currentPage();
+  }
+
+  static newModal(input, loc = "") {
+    const body = top.document.querySelector("body");
+    const modalBG = top.document.createElement("section");
+    const modal = top.document.createElement("div");
+
+    if (typeof input === "string") {
+      const notice = top.document.createElement("p");
+      const btn = top.document.createElement("button");
+
+      notice.innerText = input;
+
+      btn.innerText = "Ok";
+      btn.classList.add("btn");
+      btn.addEventListener("click", () => {
+        if (loc !== "") self.location = loc;
+        else LayoutController.closeModal();
+      });
+
+      modal.append(notice, btn);
+    } else {
+      modal.append(input);
+    }
+
+    modal.classList.add("modal__container--notice");
+
+    modalBG.classList.add("modal__container");
+
+    modalBG.appendChild(modal);
+
+    body.appendChild(modalBG);
+  }
+
+  static closeModal() {
+    const modal = top.document.querySelector(".modal__container");
+    top.document.querySelector("body").removeChild(modal);
   }
 
   static createNewPost() {

@@ -35,15 +35,12 @@ class API {
     })
       .then((res) => res.json())
       .then((res) => res)
-      .catch((err) => {
-        console.log(err);
-        return err;
-      });
+      .catch((err) => err);
 
     if (req.token) {
       API.token = req.token;
-      return req;
     }
+    return req;
   }
 
   static async anUser(id) {
