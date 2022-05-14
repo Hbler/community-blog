@@ -35,6 +35,7 @@ class LayoutController {
     const logoutBtn = document.createElement("button");
 
     img.classList.add("header__img");
+    img.src = "../img/frame.png";
     img.style.backgroundImage = `url(${localStorage.getItem("avatar")})`;
 
     name.classList.add("header__username");
