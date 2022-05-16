@@ -21,5 +21,5 @@ if (document.title === "Blog | Hugo Bler") {
     if (document.readyState === "complete" && pagination.innerHTML === "") {
       location.reload();
     }
-  }, 500);
+  }, 1000);
 }
